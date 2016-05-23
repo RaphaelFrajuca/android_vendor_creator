@@ -44,6 +44,8 @@ shift
 
 echo What is your device codename ?
 read device_codename; 
+echo What is your brand name ?
+read brand_name;
 
 DEVICES="$device_codename"
 export LC_ALL=C
@@ -90,8 +92,8 @@ fi
 
 for DEVICENAME in $DEVICES
 do
-  MANUFACTURERNAME=$( find device -type d | grep [^/]\*/[^/]\*/$DEVICENAME\$ | cut -f 2 -d / )
-  if test $(wc -l < $ARCHIVEDIR/$DEVICENAME-without.txt) != 0 -a $(wc -l < $ARCHIVEDIR/$DEVICENAME-with.txt) != 0
+  MANUFACTURERNAME=$brand_name
+  if test $brand_name
   then
     (
       echo '# Copyright (C) 2011 The Android Open Source Project'
