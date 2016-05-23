@@ -161,6 +161,8 @@ done
 if true
 then
 cd device/$MANUFACTURERNAME/$DEVICENAME
+chmod a+x setup-makefiles.sh
+chmod a+x extract-files.sh
 ./setup-makefiles.sh
 fi
 
