@@ -167,8 +167,12 @@ fi
 if true
 then
 echo Sucess!! Vendor tree for $DEVICENAME is created
+sleep 3
 echo "Script edited by RaphaelFrajuca (www.github.com/RaphaelFrajuca)"
+sleep 3
 echo Credits: Cyanogenmod Team, Android Open Source Project and RaphaelFrajuca
+sleep 3
+exit
 fi
 
 
