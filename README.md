@@ -4,6 +4,7 @@ BETA-1 vendor blobs creator (for Cyanogenmod only)
 ## How to Create ?
 
 1º Edit vendor-creator.sh and put your device codename in `DEVICES=""`
+
 Ex:`DEVICES="kyleveub"`
 
 2º Put vendor-creator.sh in root Cyanogenmod source
