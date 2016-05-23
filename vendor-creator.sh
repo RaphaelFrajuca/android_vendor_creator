@@ -61,8 +61,8 @@ echo "Copying the necessary files to your tree..."
 sleep 5
 if true
 then
- cp setup-makefiles.sh device/$MANUFACTURENAME/$DEVICES
- cp extract-files.sh device/$MANUFACTURENAME/$DEVICES
+ cp setup-makefiles.sh device/$brand_name/$device_codename
+ cp extract-files.sh device/$brand_name/$device_codename
 fi
 echo "Starting Process... It can take a long time"
 sleep 4
