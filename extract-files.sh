@@ -1,7 +1,10 @@
 #!/bin/bash
-
-VENDOR=samsung
-DEVICE=kyleveub
+echo What is your device name ?
+read device_name;
+echo What is your brand name ?
+read brand_name;
+VENDOR=$brand_name
+DEVICE=$device_name
 
 BASE=../../../vendor/$VENDOR/$DEVICE/proprietary
 rm -rf $BASE/*
