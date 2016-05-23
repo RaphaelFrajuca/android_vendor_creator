@@ -42,7 +42,10 @@ then
 fi
 shift
 
-DEVICES="kyleveub"
+echo What is your device codename ?
+read device_codename; 
+
+DEVICES="$device_codename"
 export LC_ALL=C
 
 repo sync -j32 -n
@@ -136,16 +139,3 @@ do
     )
   fi
 done
-
-if true
-then
-  rm -rf out/
-elif ! test -d archive-ref
-then
-  echo * device/* |
-    tr \  \\n |
-    grep -v ^archive- |
-    grep -v ^device$ |
-    grep -v ^device/common$ |
-    xargs rm -rf
-fi
