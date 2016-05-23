@@ -42,10 +42,12 @@ then
 fi
 shift
 
+echo                                                                                
 echo "This script compile Android two times for compare files and make vendor blobs"
+sleep 2
 echo "Script BETA-2 version"
 sleep 3
-echo "Connect your device in ADB mode and wait"
+echo "Connect your device in ADB mode and wait 10 seconds"
 sleep 10
 echo "remain with the device connected to the end of the process"
 sleep 3
@@ -54,17 +56,16 @@ echo What is your device codename ?
 read device_codename; 
 echo What is your brand name ?
 read brand_name;
-sleep 2
-echo Put setup-makefiles.sh and extract-files.sh "in" device"/"$MANUFACTURENAME"/"$DEVICES 
 sleep 3
 echo "Copying the necessary files to your tree..."
 sleep 5
-if test $DEVICES
+if true
 then
  cp setup-makefiles.sh device/$MANUFACTURENAME/$DEVICES
  cp extract-files.sh device/$MANUFACTURENAME/$DEVICES
 fi
 echo "Starting Process... It can take a long time"
+sleep 4
 
 DEVICES="$device_codename"
 export LC_ALL=C
