@@ -149,7 +149,7 @@ fi
 if true
 then
 echo Sucess!! Vendor tree for $DEVICENAME is created
-echo Script edited by RaphaelFrajuca (www.github.com/RaphaelFrajuca)
+echo Script edited by RaphaelFrajuca "www.github.com/RaphaelFrajuca"
 echo Credits: Cyanogenmod Team, Android Open Source Project and RaphaelFrajuca
 fi
 
