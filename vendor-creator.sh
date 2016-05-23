@@ -67,15 +67,15 @@ else
     if test $DEVICENAME = maguro
     then
       lunch yakju-user
-      make -j32 libdrmdecrypt
+      make -j4 bacon
     fi
     if test $DEVICENAME = toro
     then
       lunch mysid-user
-      make -j32 libdrmdecrypt
+      make -j4 bacon
     fi
     lunch cm_$DEVICENAME-userdebug
-    make -j4
+    make bacon -j4
     cat out/target/product/$DEVICENAME/installed-files.txt |
       cut -b 15- |
       sort -f > $ARCHIVEDIR/$DEVICENAME-with.txt
@@ -83,7 +83,7 @@ else
   for DEVICENAME in $DEVICES
   do
     lunch cm_$DEVICENAME-userdebug
-    make -j4
+    make bacon -j4
     cat out/target/product/$DEVICENAME/installed-files.txt |
       cut -b 15- |
       sort -f > $ARCHIVEDIR/$DEVICENAME-without.txt
