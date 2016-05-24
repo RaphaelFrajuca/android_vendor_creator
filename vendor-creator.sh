@@ -157,6 +157,8 @@ if true
 then
 echo "Build for $DEVICENAME ? yes or no"
 read full_build;
+fi
+
 case $full_build in
    “yes”)
 echo Ok, Starting Build
