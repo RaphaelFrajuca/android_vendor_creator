@@ -29,10 +29,9 @@
 # to run. It's best # suited for overnight runs on multi-CPU machines
 # with a lot of RAM.
 
-echo                                                                                
+echo 
+echo
 echo "This script compile Android two times for compare files and make vendor blobs"
-sleep 2
-echo "Script BETA-3 version"
 sleep 3
 echo "Connect your device in ADB mode and wait 10 seconds"
 adb wait-for-device
@@ -42,11 +41,25 @@ sleep 3
 
 echo What is your device codename ?
 read device_codename; 
-echo What is your brand name ?
+echo What is your brand/manufacturer name ?
 read brand_name;
+sleep 3
+echo "How many jobs do you want? (Recommended 4)"
+read jobs_number;
 sleep 3
 echo "Copying the necessary files to your tree..."
 sleep 5
+DEVICE=$device_codename
+BRAND_MANUFACTURER_NAME=$brand_name
+JOBS_NUNBER=$jobs_number
+DEVICE_TREE_LOCATION=device/$brand_name/$device_codename
+SCRIPT_VER=BETA-4
+echo Configs:
+ echo DEVICE = $DEVICE
+ echo BRAND MANUFACTURER NAME = $BRAND_MANUFACTURER_NAME
+ echo JOBS NUMBER = $JOBS_NUNBER
+ echo DEVICE TREE LOCATION = $DEVICE_TREE_LOCATION
+ echo SCRIPT VERSION = $SCRIPT_VER
 if true
 then
  cp setup-makefiles.sh device/$brand_name/$device_codename
@@ -55,7 +68,6 @@ fi
 echo "Starting Process... It can take a long time"
 sleep 4
 
-DEVICES="$device_codename"
 export LC_ALL=C
 
 ARCHIVEDIR=archive-$(date +%s)
@@ -66,37 +78,37 @@ else
   mkdir $ARCHIVEDIR
 
   . build/envsetup.sh
-  for DEVICENAME in $DEVICES
+  for DEVICENAME in $DEVICE
   do
     if test $DEVICENAME = maguro
     then
       lunch yakju-user
-      make -j4 bacon
+      make -j4 -i bacon
     fi
     if test $DEVICENAME = toro
     then
       lunch mysid-user
-      make -j4 bacon
+      make -j4 -i bacon
     fi
     lunch cm_$DEVICENAME-userdebug
-    make bacon -j4
+    make bacon -i -j4
     cat out/target/product/$DEVICENAME/installed-files.txt |
       cut -b 15- |
       sort -f > $ARCHIVEDIR/$DEVICENAME-with.txt
   done
   rm -rf vendor/$brand_name
   rm -rf hardware/qcom/gps
-  for DEVICENAME in $DEVICES
+  for DEVICENAME in $DEVICE
   do
     lunch cm_$DEVICENAME-userdebug
-    make bacon -j4
+    make bacon -i -j4
     cat out/target/product/$DEVICENAME/installed-files.txt |
       cut -b 15- |
       sort -f > $ARCHIVEDIR/$DEVICENAME-without.txt
   done
 fi
 
-for DEVICENAME in $DEVICES
+for DEVICENAME in $DEVICE
 do
   MANUFACTURERNAME=$brand_name
   if test $brand_name
