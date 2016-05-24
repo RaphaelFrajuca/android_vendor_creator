@@ -101,7 +101,7 @@ else
       lunch mysid-user
       make -j$JOBS_NUNBER -i bacon
     fi
-    lunch cm_$DEVICENAME-userdebug
+    lunch $ANDROID_ROM_$DEVICENAME-userdebug
     make bacon -i -j$JOBS_NUNBER
     cat out/target/product/$DEVICENAME/installed-files.txt |
       cut -b 15- |
@@ -111,7 +111,7 @@ else
   rm -rf hardware/qcom/gps
   for DEVICENAME in $DEVICE
   do
-    lunch cm_$DEVICENAME-userdebug
+    lunch $ANDROID_ROM"_"$DEVICENAME-userdebug
     make bacon -i -j$JOBS_NUNBER
     cat out/target/product/$DEVICENAME/installed-files.txt |
       cut -b 15- |
