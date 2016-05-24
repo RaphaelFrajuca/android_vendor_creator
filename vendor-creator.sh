@@ -51,6 +51,7 @@ ANDROID_ROM=$android_rom
 ROM_TYPE=$rom_type
 ANDROID_VERSION=$android_version
 SCRIPT_VER=STABLE-1
+
 echo Configs:
  echo DEVICE =$DEVICE
  echo BRAND MANUFACTURER NAME =$BRAND_MANUFACTURER_NAME
@@ -151,7 +152,23 @@ echo "Script edited by RaphaelFrajuca (www.github.com/RaphaelFrajuca)"
 sleep 3
 echo Credits: Cyanogenmod Team, Android Open Source Project, RaphaelFrajuca and Grace5921
 sleep 3
-exit
 fi
+echo Build for $DEVICENAME ? yes or no
+read full_build;
+case $full_build in
+   “yes”)
+echo Ok, Starting Build
+sleep 5
+lunch $ANDROID_ROM"_"$DEVICENAME-$ROM_TYPE
+make bacon -i -j$JOBS_NUNBER
+echo Build suceffuly, Bye Bye ;)
+      ;;
+   “no”)
+echo Ok, Bye Bye ;)
+sleep 5
+exit
+  ;;
+esac
+
 
 
