@@ -31,7 +31,7 @@ echo What is your brand/manufacturer name ?
 read brand_name;
 sleep 3
 echo "How many jobs do you want? (Recommended 4)"
-read jobs_number;
+read cores_number;
 sleep 3
 echo "Copying the necessary files to your tree..."
 sleep 5
@@ -45,17 +45,17 @@ echo "This build is for ? (userdebug,user,eng)"
 read rom_type;
 DEVICE=$device_codename
 BRAND_MANUFACTURER_NAME=$brand_name
-JOBS_NUNBER=$jobs_number
+NUMBER_OF_CORES=$cores_number
 DEVICE_TREE_LOCATION=device/$brand_name/$device_codename
 ANDROID_ROM=$android_rom
 ROM_TYPE=$rom_type
 ANDROID_VERSION=$android_version
-SCRIPT_VER=STABLE-1
+SCRIPT_VER=STABLE-2
 
 echo Configs:
  echo DEVICE =$DEVICE
  echo BRAND MANUFACTURER NAME =$BRAND_MANUFACTURER_NAME
- echo JOBS NUMBER =$JOBS_NUNBER
+ echo NUMBER OF CORES =$NUMBER_OF_CORES
  echo DEVICE TREE LOCATION =$DEVICE_TREE_LOCATION
  echo SCRIPT VERSION =$SCRIPT_VER
  echo ANDROID ROM =$ANDROID_ROM
@@ -85,17 +85,17 @@ else
     if test $DEVICENAME = maguro
     then
       lunch yakju-$ROM_TYPE
-      make -j$JOBS_NUNBER -i bacon
+      make -j$NUMBER_OF_CORES -i bacon
     fi
     if test $DEVICENAME = toro
     then
       lunch mysid-$ROM_TYPE
-      make -j$JOBS_NUNBER -i bacon
+      make -j$NUMBER_OF_CORES -i bacon
     fi
     echo Starting First Compilation 
     sleep 5
     lunch $ANDROID_ROM"_"$DEVICENAME-$ROM_TYPE
-    make bacon -i -j$JOBS_NUNBER
+    make bacon -i -j$NUMBER_OF_CORES
     cat out/target/product/$DEVICENAME/installed-files.txt |
       cut -b 23- |
       sort -f > $ARCHIVEDIR/$DEVICENAME-with.txt
@@ -109,7 +109,7 @@ else
   do
   echo Starting Second Compilation
     lunch $ANDROID_ROM"_"$DEVICENAME-$ROM_TYPE
-    make bacon -i -j$JOBS_NUNBER
+    make bacon -i -j$NUMBER_OF_CORES
     cat out/target/product/$DEVICENAME/installed-files.txt |
       cut -b 23- |
       sort -f > $ARCHIVEDIR/$DEVICENAME-without.txt
@@ -189,7 +189,7 @@ sleep 5
       ;;
    “4”)
   lunch $ANDROID_ROM"_"$DEVICENAME-$ROM_TYPE
-  make bacon -i -j$JOBS_NUNBER
+  make bacon -i -j$NUMBER_OF_CORES
   echo Build suceffuly ;)
       ;;
    “5”)
