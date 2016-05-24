@@ -174,6 +174,7 @@ done
 
 if true
 then
+mkdir vendor/$MANUFACTURERNAME/$DEVICENAME
 cd device/$MANUFACTURERNAME/$DEVICENAME
 chmod a+x setup-makefiles.sh
 chmod a+x extract-files.sh
