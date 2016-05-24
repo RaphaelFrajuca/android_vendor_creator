@@ -41,6 +41,7 @@ sleep 2
 echo "Script BETA-2 version"
 sleep 3
 echo "Connect your device in ADB mode and wait 10 seconds"
+adb wait-for-device
 sleep 10
 echo "remain with the device connected to the end of the process"
 sleep 3
