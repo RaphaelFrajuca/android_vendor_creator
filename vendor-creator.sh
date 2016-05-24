@@ -96,6 +96,8 @@ else
       cut -b 15- |
       sort -f > $ARCHIVEDIR/$DEVICENAME-with.txt
   done
+  rm -rf vendor/$brand_name
+  rm -rf hardware/qcom/gps
   for DEVICENAME in $DEVICES
   do
     lunch cm_$DEVICENAME-userdebug
