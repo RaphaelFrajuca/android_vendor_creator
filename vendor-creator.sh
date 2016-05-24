@@ -171,3 +171,4 @@ sleep 5
 exit
   ;;
 esac
+exit
