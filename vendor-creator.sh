@@ -101,7 +101,7 @@ else
       lunch mysid-user
       make -j$JOBS_NUNBER -i bacon
     fi
-    lunch $ANDROID_ROM_$DEVICENAME-userdebug
+    lunch $ANDROID_ROM"_"$DEVICENAME-userdebug
     make bacon -i -j$JOBS_NUNBER
     cat out/target/product/$DEVICENAME/installed-files.txt |
       cut -b 15- |
