@@ -153,25 +153,3 @@ sleep 3
 echo Credits: Cyanogenmod Team, Android Open Source Project, RaphaelFrajuca and Grace5921
 sleep 3
 fi
-if true
-then
-echo "Build for $DEVICENAME ? yes or no"
-read full_build;
-fi
-
-case $full_build in
-   “yes”)
-echo Ok, Starting Build
-sleep 5
-lunch $ANDROID_ROM"_"$DEVICENAME-$ROM_TYPE
-make bacon -i -j$NUMBER_OF_CORES
-echo "Build suceffuly, Bye Bye ;)"
-      ;;
-   “no”)
-echo "Ok, Bye Bye ;)"
-sleep 5
-exit
-  ;;
-esac
-exit
-
