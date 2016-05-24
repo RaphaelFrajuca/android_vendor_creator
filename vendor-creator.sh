@@ -29,12 +29,6 @@
 # to run. It's best # suited for overnight runs on multi-CPU machines
 # with a lot of RAM.
 
-# Syntax: vendor-creator.sh -f|--force [<server> <branch>]
-#
-# If the server and branch paramters are both present, the script will upload
-# new files (if there's been any change) to the mentioned Gerrit server,
-# in the specified branch.
-
 echo                                                                                
 echo "This script compile Android two times for compare files and make vendor blobs"
 sleep 2
