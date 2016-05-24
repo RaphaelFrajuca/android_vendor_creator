@@ -35,13 +35,6 @@
 # new files (if there's been any change) to the mentioned Gerrit server,
 # in the specified branch.
 
-if test "$1" != "-f" -a "$1" != "--force"
-then
-  echo This script must be run with the --force option
-  exit 1
-fi
-shift
-
 echo                                                                                
 echo "This script compile Android two times for compare files and make vendor blobs"
 sleep 2
