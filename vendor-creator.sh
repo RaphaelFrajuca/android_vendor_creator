@@ -30,8 +30,8 @@ read device_codename;
 echo What is your brand/manufacturer name ?
 read brand_name;
 sleep 3
-echo "how many cores your computer has? (Recommended 4)"
-read cores_number;
+echo "How many jobs do you want? (Recommended 4)"
+read jobs_number;
 sleep 3
 echo "Copying the necessary files to your tree..."
 sleep 5
@@ -45,17 +45,16 @@ echo "This build is for ? (userdebug,user,eng)"
 read rom_type;
 DEVICE=$device_codename
 BRAND_MANUFACTURER_NAME=$brand_name
-NUMBER_OF_CORES=$cores_number
+JOBS_NUNBER=$jobs_number
 DEVICE_TREE_LOCATION=device/$brand_name/$device_codename
 ANDROID_ROM=$android_rom
 ROM_TYPE=$rom_type
 ANDROID_VERSION=$android_version
-SCRIPT_VER=STABLE-2
-
+SCRIPT_VER=STABLE-1
 echo Configs:
  echo DEVICE =$DEVICE
  echo BRAND MANUFACTURER NAME =$BRAND_MANUFACTURER_NAME
- echo NUMBER OF CORES =$NUMBER_OF_CORES
+ echo JOBS NUMBER =$JOBS_NUNBER
  echo DEVICE TREE LOCATION =$DEVICE_TREE_LOCATION
  echo SCRIPT VERSION =$SCRIPT_VER
  echo ANDROID ROM =$ANDROID_ROM
@@ -85,17 +84,17 @@ else
     if test $DEVICENAME = maguro
     then
       lunch yakju-$ROM_TYPE
-      make -j$NUMBER_OF_CORES -i bacon
+      make -j$JOBS_NUNBER -i bacon
     fi
     if test $DEVICENAME = toro
     then
       lunch mysid-$ROM_TYPE
-      make -j$NUMBER_OF_CORES -i bacon
+      make -j$JOBS_NUNBER -i bacon
     fi
     echo Starting First Compilation 
     sleep 5
     lunch $ANDROID_ROM"_"$DEVICENAME-$ROM_TYPE
-    make bacon -i -j$NUMBER_OF_CORES
+    make bacon -i -j$JOBS_NUNBER
     cat out/target/product/$DEVICENAME/installed-files.txt |
       cut -b 23- |
       sort -f > $ARCHIVEDIR/$DEVICENAME-with.txt
@@ -109,7 +108,7 @@ else
   do
   echo Starting Second Compilation
     lunch $ANDROID_ROM"_"$DEVICENAME-$ROM_TYPE
-    make bacon -i -j$NUMBER_OF_CORES
+    make bacon -i -j$JOBS_NUNBER
     cat out/target/product/$DEVICENAME/installed-files.txt |
       cut -b 23- |
       sort -f > $ARCHIVEDIR/$DEVICENAME-without.txt
@@ -152,4 +151,7 @@ echo "Script edited by RaphaelFrajuca (www.github.com/RaphaelFrajuca)"
 sleep 3
 echo Credits: Cyanogenmod Team, Android Open Source Project, RaphaelFrajuca and Grace5921
 sleep 3
+exit
 fi
+
+
