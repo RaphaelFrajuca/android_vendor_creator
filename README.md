@@ -1,9 +1,9 @@
 # android_vendor_creator
-BETA-4 vendor blobs creator (for ALL Source)
+STABLE-1 vendor blobs creator (for ALL Source)
 
 ## How to Create ?
 
-1º Place vendor-creator.sh,setup-makefiles.sh and extract-files.shin your ANDROID source
+1º Place vendor-creator.sh,setup-makefiles.sh and extract-files.shin your ANDROID source tree
 
 2º Use this commands:
 
@@ -23,6 +23,9 @@ ENJOY !!!
 
 ## Any Help
 Hangouts: olocogameplays552@gmail.com
+
 Whatsapp: +5511949597274
+
 Telegram: +5511988415002
+
 Facebook: https://www.facebook.com/raphael.frajuca
