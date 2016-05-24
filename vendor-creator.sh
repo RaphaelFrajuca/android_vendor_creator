@@ -106,7 +106,7 @@ else
     lunch $ANDROID_ROM"_"$DEVICENAME-userdebug
     make bacon -i -j$JOBS_NUNBER
     cat out/target/product/$DEVICENAME/installed-files.txt |
-      cut -b 15- |
+      cut -b 16- |
       sort -f > $ARCHIVEDIR/$DEVICENAME-with.txt
   done
   echo Wiping old vendor and other files
@@ -120,7 +120,7 @@ else
     lunch $ANDROID_ROM"_"$DEVICENAME-userdebug
     make bacon -i -j$JOBS_NUNBER
     cat out/target/product/$DEVICENAME/installed-files.txt |
-      cut -b 15- |
+      cut -b 16- |
       sort -f > $ARCHIVEDIR/$DEVICENAME-without.txt
   done
 fi
