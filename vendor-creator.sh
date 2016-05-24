@@ -81,7 +81,7 @@ sleep 4
 
 export LC_ALL=C
 
-ARCHIVEDIR=archive-$(date +%s)
+ARCHIVEDIR=data
 if test -d archive-ref
 then
   cp -R archive-ref $ARCHIVEDIR
