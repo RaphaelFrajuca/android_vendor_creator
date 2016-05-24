@@ -30,7 +30,7 @@ read device_codename;
 echo What is your brand/manufacturer name ?
 read brand_name;
 sleep 3
-echo "How many jobs do you want? (Recommended 4)"
+echo "how many cores your computer has? (Recommended 4)"
 read cores_number;
 sleep 3
 echo "Copying the necessary files to your tree..."
@@ -190,7 +190,7 @@ sleep 5
    “4”)
   lunch $ANDROID_ROM"_"$DEVICENAME-$ROM_TYPE
   make bacon -i -j$NUMBER_OF_CORES
-  echo Build suceffuly ;)
+  echo "Build suceffuly ;)"
       ;;
    “5”)
 echo Hangouts: olocogameplays552@gmail.com
@@ -202,7 +202,7 @@ echo
 echo Facebook: https://www.facebook.com/raphael.frajuca
 sleep 5
    “6”)
-  echo Ok, Bye Bye ;) 
+  echo "Ok, Bye Bye ;)" 
   exit
   ;;
 esac
