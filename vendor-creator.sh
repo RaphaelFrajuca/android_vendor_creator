@@ -109,6 +109,7 @@ else
   done
   rm -rf vendor/$brand_name
   rm -rf hardware/qcom/gps
+  rm -rf out/target/product/$DEVICENAME/system
   for DEVICENAME in $DEVICE
   do
     lunch $ANDROID_ROM"_"$DEVICENAME-userdebug
