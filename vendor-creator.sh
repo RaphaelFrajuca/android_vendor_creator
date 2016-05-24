@@ -153,60 +153,21 @@ sleep 3
 echo Credits: Cyanogenmod Team, Android Open Source Project, RaphaelFrajuca and Grace5921
 sleep 3
 fi
-echo Other Utilities ? yes or no
-read other_utilities;
-case $other_utilities in
+if true
+then
+echo "Build for $DEVICENAME ? yes or no"
+read full_build;
+case $full_build in
    “yes”)
-echo Other Utilities:
- echo
- echo "1-Run make clean"
- echo "2-Delete all script files"
- echo "3-Delete all vendor files"
- echo "4-Build ROM for $DEVICENAME"
- echo "5-Contact Support"
- echo "6-Exit"
-read other_select;
-     ;;
-    “no”)
+echo Ok, Starting Build
+sleep 5
+lunch $ANDROID_ROM"_"$DEVICENAME-$ROM_TYPE
+make bacon -i -j$NUMBER_OF_CORES
+echo "Build suceffuly, Bye Bye ;)"
+      ;;
+   “no”)
+echo "Ok, Bye Bye ;)"
+sleep 5
 exit
-case $other_select in 
-   “1”)
-   make clean
-sleep 5
-      ;;
-   “2”)
-   rm extract-files.sh
-   rm setup-makefiles.sh
-   rm vendor-creator.sh
-   rm device/$BRAND_MANUFACTURER_NAME/$DEVICENAME/extract-files.sh
-   rm device/$BRAND_MANUFACTURER_NAME/$DEVICENAME/setup-makefiles.sh
-   rm device/$BRAND_MANUFACTURER_NAME/$DEVICENAME/proprietary-blobs.txt
-sleep 5
-      ;;
-   “3”)
-   rm -rf vendor/$BRAND_MANUFACTURER_NAME
-sleep 5
-      ;;
-   “4”)
-  lunch $ANDROID_ROM"_"$DEVICENAME-$ROM_TYPE
-  make bacon -i -j$NUMBER_OF_CORES
-  echo "Build suceffuly ;)"
-      ;;
-   “5”)
-echo Hangouts: olocogameplays552@gmail.com
-echo
-echo Whatsapp: +5511949597274
-echo
-echo Telegram: +5511988415002
-echo
-echo Facebook: https://www.facebook.com/raphael.frajuca
-sleep 5
-   “6”)
-  echo "Ok, Bye Bye ;)" 
-  exit
   ;;
 esac
-esac
-
-
-
