@@ -61,7 +61,7 @@ JOBS_NUNBER=$jobs_number
 DEVICE_TREE_LOCATION=device/$brand_name/$device_codename
 ANDROID_ROM=$android_rom
 ANDROID_VERSION=$android_version
-SCRIPT_VER=BETA-4
+SCRIPT_VER=BETA-5
 echo Configs:
  echo DEVICE = $DEVICE
  echo BRAND MANUFACTURER NAME = $BRAND_MANUFACTURER_NAME
@@ -101,17 +101,22 @@ else
       lunch mysid-user
       make -j$JOBS_NUNBER -i bacon
     fi
+    echo Starting First Compilation 
+    sleep 5
     lunch $ANDROID_ROM"_"$DEVICENAME-userdebug
     make bacon -i -j$JOBS_NUNBER
     cat out/target/product/$DEVICENAME/installed-files.txt |
       cut -b 15- |
       sort -f > $ARCHIVEDIR/$DEVICENAME-with.txt
   done
+  echo Wiping old vendor and other files
+  sleep 3
   rm -rf vendor/$brand_name
   rm -rf hardware/qcom/gps
   rm -rf out/target/product/$DEVICENAME/system
   for DEVICENAME in $DEVICE
   do
+  echo Starting Second Compilation
     lunch $ANDROID_ROM"_"$DEVICENAME-userdebug
     make bacon -i -j$JOBS_NUNBER
     cat out/target/product/$DEVICENAME/installed-files.txt |
@@ -122,7 +127,6 @@ fi
 
 for DEVICENAME in $DEVICE
 do
-  MANUFACTURERNAME=$brand_name
   if test $brand_name
   then
     (
@@ -147,26 +151,26 @@ do
         grep '>' |
         cut -b 3-
     ) > $ARCHIVEDIR/$DEVICENAME-proprietary-blobs.txt
-    cp $ARCHIVEDIR/$DEVICENAME-proprietary-blobs.txt device/$MANUFACTURERNAME/$DEVICENAME/proprietary-blobs.txt
+    cp $ARCHIVEDIR/$DEVICENAME-proprietary-blobs.txt device/$BRAND_MANUFACTURER_NAME/$DEVICENAME/proprietary-blobs.txt
 
     (
-      cd device/$MANUFACTURERNAME/$DEVICENAME
+      cd device/$BRAND_MANUFACTURER_NAME/$DEVICENAME
       git add .
       git commit -m "$(echo -e 'auto-generated blob list\n\nBug: 4295425')"
       if test "$1" != "" -a "$2" != ""
       then
         echo uploading to server $1 branch $2
-        git push ssh://$1:29418/device/$MANUFACTURERNAME/$DEVICENAME.git HEAD:refs/for/$2/autoblobs
+        git push ssh://$1:29418/device/$BRAND_MANUFACTURER_NAME/$DEVICENAME.git HEAD:refs/for/$2/autoblobs
       fi
     )
   else
     (
-      cd device/$MANUFACTURERNAME/$DEVICENAME
+      cd device/$BRAND_MANUFACTURER_NAME/$DEVICENAME
       git commit --allow-empty -m "$(echo -e 'DO NOT SUBMIT - BROKEN BUILD\n\nBug: 4295425')"
       if test "$1" != "" -a "$2" != ""
       then
         echo uploading to server $1 branch $2
-        git push ssh://$1:29418/device/$MANUFACTURERNAME/$DEVICENAME.git HEAD:refs/for/$2/autoblobs
+        git push ssh://$1:29418/device/$BRAND_MANUFACTURER_NAME/$DEVICENAME.git HEAD:refs/for/$2/autoblobs
       fi
     )
   fi
@@ -174,13 +178,17 @@ done
 
 if true
 then
-mkdir vendor/$MANUFACTURERNAME/$DEVICENAME
-cd device/$MANUFACTURERNAME/$DEVICENAME
+mkdir vendor/$BRAND_MANUFACTURER_NAME/$DEVICENAME
+cd device/$BRAND_MANUFACTURER_NAME/$DEVICENAME
 chmod a+x setup-makefiles.sh
 chmod a+x extract-files.sh
 ./extract-files.sh
 fi
 
+if false
+then
+echo "Maybe some error may have occurred :("
+fi
 if true
 then
 echo Sucess!! Vendor tree for $DEVICENAME is created
