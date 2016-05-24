@@ -38,7 +38,7 @@
 echo                                                                                
 echo "This script compile Android two times for compare files and make vendor blobs"
 sleep 2
-echo "Script BETA-2 version"
+echo "Script BETA-3 version"
 sleep 3
 echo "Connect your device in ADB mode and wait 10 seconds"
 adb wait-for-device
