@@ -6,6 +6,12 @@ read brand_name;
 VENDOR=$brand_name
 DEVICE=$device_name
 
+echo "Connect your device with ADB enabled"
+adb wait-for-device
+sleep 5
+echo "Extracting vendor files..... (From your device with adb)"
+sleep 2
+
 BASE=../../../vendor/$VENDOR/$DEVICE/proprietary
 rm -rf $BASE/*
 
