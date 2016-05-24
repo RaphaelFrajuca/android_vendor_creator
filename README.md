@@ -1,18 +1,28 @@
 # android_vendor_creator
-BETA-1 vendor blobs creator (for Cyanogenmod only)
+BETA-4 vendor blobs creator (for ALL Source)
 
 ## How to Create ?
 
-1º Edit vendor-creator.sh and put your device codename in `DEVICES=""`
+1º Place vendor-creator.sh,setup-makefiles.sh and extract-files.shin your ANDROID source
 
-Ex:`DEVICES="kyleveub"`
+2º Use this commands:
 
-2º Put vendor-creator.sh in root Cyanogenmod source
+`cd <your-source>`
 
-3º Go to your Cyanogenmod source and paste this code in terminal `./vendor-creator.sh --force`
+`./vendor-creator.sh`
 
-4º After Compile ends go to your device tree home and run `./extract-files.sh` and wait to finish process
+3º answer information to the Script
 
-5º After process ends your new vendor is in `<your-source-name>/vendor/<brand>/<codename>`
+4º After Compile ends type this commands:
+
+`cd vendor/<manufacture_name>/<device_name>`
+
+5º Your new vendor is in this folder.
 
 ENJOY !!!
+
+## Any Help
+Hangouts: olocogameplays552@gmail.com
+Whatsapp: +5511949597274
+Telegram: +5511988415002
+Facebook: https://www.facebook.com/raphael.frajuca
